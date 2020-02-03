@@ -1,3 +1,5 @@
+const { Transform } = require('stream')
+
 class Batch extends Transform {
 
   constructor(size = 10, expireMs) {
