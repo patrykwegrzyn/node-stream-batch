@@ -1,0 +1,19 @@
+{
+  "name": "stream-batch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrykwegrzyn/node-stream-batch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrykwegrzyn/node-stream-batch/issues"
+  },
+  "homepage": "https://github.com/patrykwegrzyn/node-stream-batch#readme"
+}
