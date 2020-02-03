@@ -1,7 +1,6 @@
 class Batch extends Transform {
 
-  constructor(size = 10, interval) {
-
+  constructor(size = 10, expireMs) {
     super({ objectMode: true });
 
     this.size = size;
@@ -10,8 +9,8 @@ class Batch extends Transform {
 
     this.fn = (batch) => batch;
 
-    if (interval) {
-      this.setupInterval(interval)
+    if (expireMs) {
+      this.setupInterval(expireMs)
     }
   }
 
@@ -20,12 +19,12 @@ class Batch extends Transform {
     return this;
   }
 
-  setupInterval(intervalMs) {
-    this.interval = setInterval(() => {
-      if (this._length > 0) {
+  setupInterval(expireMs) {
+    const doWork = () => {
+      if (this._length > 0) 
         this._push()
-      }
-    }, intervalMs)
+    }
+    this.interval = setInterval(doWork, expireMs)
   }
 
   _push() {
@@ -36,6 +35,7 @@ class Batch extends Transform {
 
   _transform(chunk, encoding, callback) {
     this._length++
+
     if (this._length <= this.size) {
       this.batch.push(chunk)
     } else {
@@ -43,10 +43,12 @@ class Batch extends Transform {
     }
 
     callback()
+
   }
 
   _destroy(err, cb) {
     const { interval } = this;
+
     if (interval) {
       clearInterval(interval)
     }
