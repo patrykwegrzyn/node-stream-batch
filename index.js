@@ -22,11 +22,11 @@ class Batch extends Transform {
   }
 
   setupInterval(expireMs) {
-    const doWork = () => {
-      if (this._length > 0) 
+    const doExpire = () => {
+      if (this._length > 0)
         this._push()
     }
-    this.interval = setInterval(doWork, expireMs)
+    this.interval = setInterval(doExpire, expireMs)
   }
 
   _push() {
@@ -35,16 +35,15 @@ class Batch extends Transform {
     this._length = 0;
   }
 
-  _transform(chunk, encoding, callback) {
-    this._length++
+  _transform(obj, _, cb) {
+    this._length++;
+    this.batch.push(obj);
 
-    if (this._length <= this.size) {
-      this.batch.push(chunk)
-    } else {
-      this._push()
-    }
+    if (this._length >= this.size) {
+      this._push();
+    } 
 
-    callback()
+    cb();
 
   }
 
@@ -55,9 +54,16 @@ class Batch extends Transform {
       clearInterval(interval)
     }
 
-    cb()
-
+    cb(err)
   }
+
+  _flush(cb) {
+    if (this._length > 0) {
+      this._push();
+    }
+    cb();
+  }
+
 }
 
 
