@@ -42,8 +42,7 @@ readable.pipe(batch).on('data', res => {
 
 ```
 
-Active sources can not be controlled and unpredictable and, batch can emited by setting `expireMs`
- 
+ Active sources can not be controlled and are unpredictable batch can be emitted on interval by setting `expireMs`
 
 ```javascript
 const batch = new Batch(100, 2000);
