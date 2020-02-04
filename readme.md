@@ -7,8 +7,6 @@
 npm install patrykwegrzyn/node-stream-batch --save
 ```
 
-## Usage example
-
 ```javascript
 
 /**
