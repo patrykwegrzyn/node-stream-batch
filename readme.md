@@ -30,7 +30,7 @@ readable.pipe(batch).on('data', res => {
 })
 ```
 
-Batched can be transofremd via `.apply()` function 
+Batch can be transofremd via `.apply()` function 
 
 ```javascript
 const sum = (arr) => arr.reduce((sum, x) => sum + x);
