@@ -1,8 +1,5 @@
 # Node stream batch
 
-## Installation
-
-
 ```sh
 npm install patrykwegrzyn/node-stream-batch --save
 ```
