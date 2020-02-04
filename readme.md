@@ -16,7 +16,7 @@ npm install patrykwegrzyn/node-stream-batch --save
 * @param {number} [expireMs]
 */
 
-new Batch(size , expireMs);
+new Batch(size, expireMs);
 ```
 
 Predictable source of the fixed length 
@@ -49,6 +49,6 @@ const batch = new Batch(100, 2000);
 
 activeSource.pipe(batch)
 
-//batch will trigger after 100 objects collected  or every 2s
+//batch will trigger after 100 objects collected or every 2s
 
 ```
